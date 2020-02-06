@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, TextInput } from 'react-native'
 import Header2 from '../components/Header2'
 
 const DATA = [
@@ -49,44 +49,58 @@ function Item({ name }) {
         </View>
     )
 }
+
+function Item2({ name }) {
+    return (
+        <View style={{ marginBottom: 10, flexDirection: 'row' }}>
+            <Image
+                style={styles.horizontalImage}
+                source={{
+                    uri:
+                        'https://facebook.github.io/react-native/img/tiny_logo.png'
+                }}
+            />
+            <View style={{ justifyContent: 'center' }}>
+                <Text style={{ fontSize: 16 }}>{name}</Text>
+                <Text style={{ fontSize: 10 }}>
+                    Hi wassup?? there you loser
+                </Text>
+            </View>
+        </View>
+    )
+}
 const ChatList = props => {
     return (
         <View>
             <Header2 header='Home' />
-            <View style={styles.search}>
-                <Image
-                    style={styles.leftRightImage}
-                    source={{
-                        uri:
-                            'https://facebook.github.io/react-native/img/tiny_logo.png'
-                    }}
-                />
-                <Text style={{ textAlign: 'center' }}>Settings</Text>
-            </View>
-
-            <FlatList
-                horizontal
-                data={DATA}
-                renderItem={({ item }) => <Item name={item.name} />}
-                keyExtractor={item => item.id}
-            />
-
-            <View style={{ flexDirection: 'row' }}>
-                <Image
-                    style={styles.horizontalImage}
-                    source={{
-                        uri:
-                            'https://facebook.github.io/react-native/img/tiny_logo.png'
-                    }}
-                />
-                <View>
-                    <Text style={{ fontSize: 16 }}>Name</Text>
-                    <Text style={{ fontSize: 10 }}>
-                        Hi wassup?? there you loser
-                    </Text>
+            
+                <View style={styles.search}>
+                    <Image
+                        style={styles.leftRightImage}
+                        source={{
+                            uri:
+                                'https://facebook.github.io/react-native/img/tiny_logo.png'
+                        }}
+                    />
+                    <TextInput 
+                    style={{fontSize:14}}
+                    placeholder='Search for friends'/>
                 </View>
+
+                <FlatList
+                    horizontal
+                    data={DATA}
+                    renderItem={({ item }) => <Item name={item.name} />}
+                    keyExtractor={item => item.id}
+                />
+
+                <FlatList
+                    data={DATA}
+                    renderItem={({ item }) => <Item2 name={item.name} />}
+                    keyExtractor={item => item.id}
+                />
             </View>
-        </View>
+     
     )
 }
 
@@ -97,13 +111,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 5
     },
     horizontalImage: {
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         marginHorizontal: 5,
-        borderRadius: 20
+        borderRadius: 25
     },
     search: {
-        height: 30,
+        height: 40,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         borderWidth: 1,
